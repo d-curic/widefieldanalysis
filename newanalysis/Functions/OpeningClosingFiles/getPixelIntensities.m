@@ -62,6 +62,10 @@ for i = framesList
     
     subimage = frame.read();
 
+    if isfield(exp, 'imageOffset') %sometimes it is useful to offset the image by a constant value. 
+        subimage = subimage + exp.imageOffset;
+    end
+    
     if k ==1; 
         pixels = find(abs(subimage) > 0);
     end

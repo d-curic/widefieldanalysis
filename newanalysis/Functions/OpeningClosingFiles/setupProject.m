@@ -4,9 +4,9 @@ addpath(genpath('/media/dcuric/400CCB3D50C6D071/netcalJan2019'))
 
 fileID = fopen(maindirfile);
 C = textscan(fileID, '%q');
-%assignin('base','cc',C);
 
-if ~isempty(strfind(C{1}, 'Seagate'))
+
+if contains(C{1}{1}, 'Seagate')
     maindir = [C{1}{1} ' ' C{1}{2} ' ' C{1}{3} ' ' C{1}{4}]
     projectdirectory =[maindir C{1}{5}];
     projectname =C{1}{6};
