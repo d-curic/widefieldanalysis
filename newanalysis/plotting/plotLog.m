@@ -25,12 +25,18 @@ function plotLog(S, nbins, plotoptions)
     if ~isfield(plotoptions, 'displayname')
         plotoptions.displayname = '';
     end
-       if ~isfield(plotoptions, 'xlabel')
+    if ~isfield(plotoptions, 'ylabel')
+        if isfield(plotoptions, 'xlabel')
+        plotoptions.ylabel = ['p(' plotoptions.xlabel ')' ];
+        else
+        plotoptions.ylabel = '';
+        end
+    end
+    
+    if ~isfield(plotoptions, 'xlabel')
         plotoptions.xlabel = '';
        end
-       if ~isfield(plotoptions, 'ylabel')
-        plotoptions.ylabel = '';
-       end
+
        if ~isfield(plotoptions, 'title')
         plotoptions.title = '';
        end
