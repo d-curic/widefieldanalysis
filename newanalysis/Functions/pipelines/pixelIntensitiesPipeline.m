@@ -11,6 +11,16 @@ function [pixelIntensity, exp]  = pixelIntensitiesPipeline(project, exp, iexp)
     if exp.randomizepixID
         'Randomizing Pixels!'
         pixelIntensity = pixelIntensity(randperm(size(pixelIntensity, 1)), :);
-    end 
+    end
+    
+    if exp.cyclicallypermute
+       'Doing cyclic permutations!'
+       
+       s = size(pixelIntensity);
+       for i = 1:s(1)
+          pixelIntensity(i,:) = circshift(pixelIntensity(i,:), randi(s(2))); 
+       end
+       
+    end
 
 end

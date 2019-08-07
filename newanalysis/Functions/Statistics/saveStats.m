@@ -1,6 +1,6 @@
 
-function saveStats(stats, th, project)
-       savedir = [project.folder 'results/rawStats/'];
+function saveStats(stats, th, project, exp)
+       savedir = [project.folder 'results/rawStats/' exp.threshstyle '/'];
        checkifDirExists(savedir);
        'Saving stats ... '
 for i=1:length(th)
