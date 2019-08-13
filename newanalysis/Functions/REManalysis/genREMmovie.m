@@ -27,7 +27,8 @@
  
  switch exp.method
      case 'bandpass'
-     power_ratio(power_ratio >= thresh) = 0;
+     %power_ratio(power_ratio >= thresh) = 0;
+     power_ratio(power_ratio <= thresh) = 0;
      case 'highpass'
      power_ratio(power_ratio <= thresh) = 0;
  end
@@ -52,7 +53,7 @@
  ymax = max(yvalid);
 
 
- moviefilename = [filenamebase exp.name '_REMMovieDataFile_Trez=' num2str(trez) '_Fqrez=' num2str(fqrez) '_pthresh=' num2str(thresh) '.tif'];
+ moviefilename = [filenamebase exp.name '_REMMovieDataFile_Trez=' num2str(trez) '_Fqrez=' num2str(fqrez) '_pthresh=' num2str(thresh) exp.tag '.tif'];
 
  if saveSynchClusterMovie
      ['SAVING MOVIE' filenamebase]
