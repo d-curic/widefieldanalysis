@@ -48,7 +48,8 @@ function plotLog(S, nbins, plotoptions)
     linespec = [plotoptions.linestyle plotoptions.color plotoptions.markerstyle]; 
     
     if plotoptions.cdf
-    n = length(S);    
+    n = length(S); 
+    S = reshape(S, numel(S), 1); %make sure S is a columnvector.
     c = [sort(S) (n:-1:1)'./n];
     plot(c(:,1), c(:,2).*c(:,1).^(plotoptions.scale-1), linespec, 'DisplayName',plotoptions.displayname);
     else
