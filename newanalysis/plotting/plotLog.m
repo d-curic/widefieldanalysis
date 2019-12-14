@@ -4,7 +4,7 @@ function plotLog(S, nbins, plotoptions)
         return
     end
 
-    p = logpdf(S,30);
+    p = logpdf(S,nbins);
     
     if isempty(p)
         return
@@ -15,6 +15,9 @@ function plotLog(S, nbins, plotoptions)
     end
     if ~isfield(plotoptions, 'linestyle')
         plotoptions.linestyle = '';
+    end    
+        if ~isfield(plotoptions, 'cdf')
+        plotoptions.cdf = false;
     end    
     if ~isfield(plotoptions, 'color')
         plotoptions.color = '';
@@ -47,9 +50,15 @@ function plotLog(S, nbins, plotoptions)
     
     
     linespec = [plotoptions.linestyle plotoptions.color plotoptions.markerstyle]; 
-        
+    
+    if plotoptions.cdf
+    n = length(S);    
+    c = [sort(S) (n:-1:1)'./n];
+    plot(c(:,1), c(:,2).*c(:,1).^(plotoptions.scale-1), linespec, 'DisplayName',plotoptions.displayname);
+    else
     plot(p(:,1),p(:,2).*p(:,1).^(plotoptions.scale), linespec, 'DisplayName',plotoptions.displayname);
-        
+    end    
+    
     set(gca,'xscale','log','yscale','log', 'fontsize',14);
     xlabel(plotoptions.xlabel);
     ylabel(plotoptions.ylabel);
