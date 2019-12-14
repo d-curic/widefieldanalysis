@@ -4,11 +4,7 @@ function plotLog(S, nbins, plotoptions)
         return
     end
 
-    p = logpdf(S,nbins);
-    
-    if isempty(p)
-        return
-    end
+
     
     if ~isfield(plotoptions, 'showlegend')
         plotoptions.showlegend = false;
@@ -56,7 +52,13 @@ function plotLog(S, nbins, plotoptions)
     c = [sort(S) (n:-1:1)'./n];
     plot(c(:,1), c(:,2).*c(:,1).^(plotoptions.scale-1), linespec, 'DisplayName',plotoptions.displayname);
     else
-    plot(p(:,1),p(:,2).*p(:,1).^(plotoptions.scale), linespec, 'DisplayName',plotoptions.displayname);
+            p = logpdf(S,nbins);
+    
+    if isempty(p)
+        return
+    end
+        
+        plot(p(:,1),p(:,2).*p(:,1).^(plotoptions.scale), linespec, 'DisplayName',plotoptions.displayname);
     end    
     
     set(gca,'xscale','log','yscale','log', 'fontsize',14);
