@@ -6,7 +6,7 @@ list = getFileList(dir1);
 setBatchMode(true);
 
 
-for (i=0; i<1; i++) {    
+for (i=0; i<list.length; i++) {    
 	//open the mask
 
 	open("mask.tif");
