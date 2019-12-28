@@ -1,7 +1,7 @@
+//opens stack, converts to 16 bit, multiply by mask, split into 2 and save both new peices. 
+
 
 dir1 = getDirectory("Choose Source Directory ");
-//format = getFormat();
-dir2 = getDirectory("Choose Destination Directory ");
 list = getFileList(dir1);
 setBatchMode(true);
 
@@ -29,9 +29,9 @@ for (i=0; i<list.length; i++) {
 	// run the stack splitter
 	run("Stack Splitter", "number=2");
 	selectWindow("stk_0001_Result of " + list[i]);
-	saveAs("Tiff", dir2 + list[i] + "part1");
+	saveAs("Tiff", dir1 + list[i] + "part1");
 	selectWindow("stk_0002_Result of " + list[i]);
-	saveAs("Tiff", dir2 + list[i] + "part2");
+	saveAs("Tiff", dir1 + list[i] + "part2");
 
 	//close all
 	close("*");
